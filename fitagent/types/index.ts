@@ -124,3 +124,13 @@ export interface FitAgentContext {
   hasUser: boolean;
   canAnalyzePhotos: boolean;
 }
+
+export interface ManualNutritionData {
+  foodName: string;
+  servingSize: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fats: number;
+  confidence: number;
+}

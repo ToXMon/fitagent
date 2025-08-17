@@ -16,6 +16,7 @@ import {
   EthBalance,
 } from '@coinbase/onchainkit/identity';
 import { useFitAgent } from '@/hooks/useFitAgent';
+import { ManualNutritionData } from '@/types';
 import { CameraCapture } from '../components/CameraCapture';
 import { ManualNutritionEntry } from '../components/ManualNutritionEntry';
 
