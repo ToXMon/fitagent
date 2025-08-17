@@ -19,6 +19,16 @@ import { useFitAgent } from '@/hooks/useFitAgent';
 import { CameraCapture } from '../components/CameraCapture';
 import { ManualNutritionEntry } from '../components/ManualNutritionEntry';
 
+interface ManualNutritionData {
+  foodName: string;
+  servingSize: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fats: number;
+  confidence: number;
+}
+
 export default function App() {
   const { isFrameReady, setFrameReady, isReady, user, vitalityPoints } = useFitAgent();
   const [showCamera, setShowCamera] = useState(false);
@@ -40,7 +50,7 @@ export default function App() {
     alert(`Processing ${files.length} image(s)... This will integrate with Venice AI and OCR soon!`);
   };
 
-  const handleManualEntry = (nutritionData: any) => {
+  const handleManualEntry = (nutritionData: ManualNutritionData) => {
     console.log('Manual nutrition entry:', nutritionData);
     setShowManualEntry(false);
     

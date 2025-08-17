@@ -16,7 +16,6 @@ interface CapturedImage {
 }
 
 export function CameraCapture({ onPhotosCapture, onCancel }: CameraCaptureProps) {
-  const [stream, setStream] = useState<MediaStream | null>(null);
   const [capturedImages, setCapturedImages] = useState<CapturedImage[]>([]);
   const [isCapturing, setIsCapturing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,16 +28,17 @@ export function CameraCapture({ onPhotosCapture, onCancel }: CameraCaptureProps)
 
   // Initialize camera
   useEffect(() => {
+    let mediaStream: MediaStream | null = null;
+    
     const initCamera = async () => {
       try {
-        const mediaStream = await navigator.mediaDevices.getUserMedia({
+        mediaStream = await navigator.mediaDevices.getUserMedia({
           video: { 
             facingMode: 'environment', // Use back camera on mobile
             width: { ideal: 1920 },
             height: { ideal: 1080 }
           }
         });
-        setStream(mediaStream);
         if (videoRef.current) {
           videoRef.current.srcObject = mediaStream;
         }
@@ -51,8 +51,8 @@ export function CameraCapture({ onPhotosCapture, onCancel }: CameraCaptureProps)
     initCamera();
 
     return () => {
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
       }
     };
   }, []);
