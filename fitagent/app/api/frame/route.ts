@@ -6,6 +6,7 @@ export async function POST(req: NextRequest) {
     
     // Basic frame interaction handler
     // In production, this would validate the frame message and handle user interactions
+    console.log('Frame request body:', body);
     
     return NextResponse.json({
       type: 'frame',
