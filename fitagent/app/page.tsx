@@ -16,6 +16,7 @@ import {
   EthBalance,
 } from '@coinbase/onchainkit/identity';
 import { useFitAgent } from '@/hooks/useFitAgent';
+import { ManualNutritionData } from '@/types';
 import { CameraCapture } from '../components/CameraCapture';
 import { ManualNutritionEntry } from '../components/ManualNutritionEntry';
 
@@ -40,7 +41,7 @@ export default function App() {
     alert(`Processing ${files.length} image(s)... This will integrate with Venice AI and OCR soon!`);
   };
 
-  const handleManualEntry = (nutritionData: any) => {
+  const handleManualEntry = (nutritionData: ManualNutritionData) => {
     console.log('Manual nutrition entry:', nutritionData);
     setShowManualEntry(false);
     

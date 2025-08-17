@@ -76,7 +76,7 @@ export function useFitAgent() {
     }
   };
 
-  const analyzePhoto = async (imageFile: File): Promise<NutritionData | null> => {
+  const analyzePhoto = async (_imageFile: File): Promise<NutritionData | null> => {
     setIsLoading(true);
     try {
       // TODO: Implement photo analysis API call
@@ -151,7 +151,7 @@ export function useFitAgent() {
     }
   };
 
-  const completeGoal = async (goalType: 'protein' | 'calories', value: number): Promise<boolean> => {
+  const completeGoal = async (_goalType: 'protein' | 'calories', _value: number): Promise<boolean> => {
     setIsLoading(true);
     try {
       // TODO: Implement goal completion API call and blockchain transaction
