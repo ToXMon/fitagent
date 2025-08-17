@@ -1,0 +1,32 @@
+# Enhanced FitAgent Venice AI Requirements
+# Core uAgent framework
+uagents>=0.10.0
+cosmpy>=0.9.0
+
+# Venice AI and LangChain integration
+langchain-core>=0.1.0
+requests>=2.31.0
+
+# Enhanced functionality
+numpy>=1.24.0
+sqlite3  # Built into Python
+
+# Web server
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# Environment and utilities
+python-dotenv>=1.0.0
+asyncio  # Built into Python
+json  # Built into Python
+datetime  # Built into Python
+dataclasses  # Built into Python
+enum  # Built into Python
+collections  # Built into Python
+hashlib  # Built into Python
+time  # Built into Python
+os  # Built into Python
+
+# Optional for enhanced analytics
+scipy>=1.10.0  # For advanced statistical analysis
+pandas>=2.0.0  # For data manipulation if needed

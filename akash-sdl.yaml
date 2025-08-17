@@ -1,0 +1,58 @@
+# Akash Network SDL for FitAgent uAgent Deployment
+# This SDL file defines the deployment configuration for the FitAgent Nutrition Coach on Akash
+
+version: "2.0"
+
+services:
+  fitagent-coach:
+    image: wijnaldum/fitagent-nutrition-coach:v21-manual-entry-fix
+    env:
+      - VENICE_AI_API_KEY=15zKSyc8r8_UDaRUsFE7uv4bftHbErwZKKx_uxYriA
+      - AGENTVERSE_API_KEY=eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE3NTc5NjMzNTUsImlhdCI6MTc1NTM3MTM1NSwiaXNzIjoiZmV0Y2guYWkiLCJqdGkiOiIwMmNjOTg3OWQxZTY4N2JjZDUxMGVlOTIiLCJzY29wZSI6ImF2Iiwic3ViIjoiMWQ1YWEzZWU0OTdmOWJiY2E2OWRlNmMyZDU2ZWIxMzI4NTc5MDFlYWU5MjA3YTMwIn0.W_fcGn8zuyWl_uVScNgqUmEhpG4-nxCQm81-aSyjmbCtbTi8RxphuSM89sATLYKav1IcsnycRhTobHutGM7ITCIO4DhvJjFc1ZXhjZ4yi2Xb_gRe2tSCpHSW4b4jKoCGINc5kH8kCE5EOtrXtaprmlO5zbqzBKwciuvipCB_N7Uxw8Ex-Wjtr4p3g95KypN7WBVasZo4CS608Hocso0J6O-e67nUcRVt8Pj7EKr2jenE_XlrnoCDY2VKe-L5uFAAnCzivh451QUDzZM9akEouQVGKiCc2NejMjEvJTKYcHnGzfv0fe0Ti30q1umRXcM_AL6vQZ5NUk_x-9zKKFKcNRA
+      - AGENT_NAME=fitagent_nutrition_coach
+      - AGENT_PORT=8081
+      - AGENT_SEED=fitagent_coach_seed_phrase_for_consistency
+      - VENICE_AI_MODEL=llama-3.1-405b
+      - VENICE_AI_TEMPERATURE=0.7
+      - VENICE_AI_MAX_TOKENS=1000
+      - MAILBOX_ENABLED=true
+      - USER_MEMORY_FILE=/app/data/user_memory.json
+      # Remove AGENT_ENDPOINT to enable mailbox functionality
+      # - AGENT_ENDPOINT=https://ku168h4jop8gv77jh37kh6btf0.ingress.akashprovid.com:8081/
+    expose:
+      - port: 8081
+        as: 80
+        to:
+          - global: true
+      - port: 8082
+        as: 8082
+        to:
+          - global: true
+
+profiles:
+  compute:
+    fitagent-coach:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 1Gi
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        fitagent-coach:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  fitagent-coach:
+    dcloud:
+      profile: fitagent-coach
+      count: 1
