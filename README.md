@@ -1,5 +1,3 @@
-I'll help you create a polished, hackathon-optimized README for FitAgent. Here's a streamlined version that highlights the key aspects while maintaining clarity and conciseness:
-
 ```markdown
 # FitAgent – AI-Powered Nutrition Coach 🍎🤖
 
@@ -10,7 +8,7 @@ I'll help you create a polished, hackathon-optimized README for FitAgent. Here's
 > **Multi-chain, AI-driven nutrition tracking** that rewards healthy habits with Base VP rewards and Flow dynamic NFTs.
 
 <p align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=FitAgent+Demo" alt="FitAgent Demo" width="80%">
+  <img src="fitagent/public/VeniceAI_hero.png" alt="FitAgent Demo" width="80%">
 </p>
 
 ## 🚀 Features
@@ -133,21 +131,4 @@ interface NutritionLog {
 ```
 
 
-## 📝 License
 
-MIT © 2025 FitAgent Team
-
----
-
-<div align="center">
-  Made with ❤️ by the FitAgent Team
-</div>
-```
-
-### Key Improvements:
-1. **Concise Structure** - Organized with clear sections and emoji headers
-2. **Visual Elements** - Added badges, mermaid diagram, and placeholder for demo image
-3. **Quick Start** - Streamlined setup instructions
-4. **Code Snippets** - Highlighted key smart contract functions
-5. **Hackathon Focus** - Added a section to showcase competition details
-6. **Mobile-First** - Clean layout that works well on all devices
