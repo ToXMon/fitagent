@@ -1,0 +1,66 @@
+---
+version: "2.0"
+
+services:
+  agent-zero:
+    image: agent0ai/agent-zero:latest
+    expose:
+      # Web UI - main interface
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      # SSH access (optional - for debugging)
+      - port: 22
+        as: 22
+        to:
+          - global: true
+      # Additional service ports (MCP, API, etc.)
+      - port: 9000
+        as: 9000
+        to:
+          - global: true
+    env:
+      # Add your LLM API keys here
+      # - OPENAI_API_KEY=your-openai-key
+      # - ANTHROPIC_API_KEY=your-anthropic-key
+      # - OPENROUTER_API_KEY=your-openrouter-key
+      - TZ=UTC
+    params:
+      storage:
+        agent-data:
+          mount: /git/agent-zero/work_dir
+          readOnly: false
+
+profiles:
+  compute:
+    agent-zero:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          # Ephemeral storage for OS/runtime
+          - size: 10Gi
+          # Persistent storage for Agent Zero data (memory, chats, files)
+          - name: agent-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        agent-zero:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  agent-zero:
+    akash:
+      profile: agent-zero
+      count: 1
