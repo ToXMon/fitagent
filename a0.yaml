@@ -26,6 +26,8 @@ services:
       # - ANTHROPIC_API_KEY=your-anthropic-key
       # - OPENROUTER_API_KEY=your-openrouter-key
       - TZ=UTC
+      # Allow access from Akash ingress URLs
+      - ALLOWED_ORIGINS=*://localhost:*,*://127.0.0.1:*,*://0.0.0.0:*,*://*.ingress.akashprovid.com:*,*://*.ingress.akashprovid.com
     params:
       storage:
         agent-data:
